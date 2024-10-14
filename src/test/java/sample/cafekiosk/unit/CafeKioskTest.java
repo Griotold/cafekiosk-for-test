@@ -1,5 +1,6 @@
 package sample.cafekiosk.unit;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import sample.cafekiosk.unit.beverage.Americano;
 import sample.cafekiosk.unit.beverage.Latte;
@@ -21,6 +22,8 @@ class CafeKioskTest {
         System.out.println(">>> 담긴 음료 : " + cafeKiosk.getBeverages().get(0).getName());
     }
 
+    // "음료 1개 추가 테스트" 보다 아래 문구가 훨씬 좋다.
+    @DisplayName("음료 1개를 추가하면 주문 목록에 담긴다.")
     @Test
     void add_automatic_test() {
         CafeKiosk cafeKiosk = new CafeKiosk();
@@ -115,6 +118,8 @@ class CafeKioskTest {
         assertThat(order.getBeverages().getFirst().getName()).isEqualTo("아메리카노");
     }
 
+    // "특정 시간 이전에 주문을 생성하면 실패한다" 보다 도메인 용어를 사용한 아래 문구가 더 좋다.
+    @DisplayName("영업 시작 시간 이전에는 주문을 생성할 수 없다.")
     @Test
     void createOrderOutsideOpenTime() {
         CafeKiosk cafeKiosk = new CafeKiosk();
