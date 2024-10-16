@@ -19,6 +19,6 @@ public class OrderController {
     @PostMapping("/api/v1/orders/new")
     public OrderResponse createOrder(@RequestBody OrderCreateRequest request) {
         LocalDateTime now = LocalDateTime.now();
-        return orderService.cretaeOrder(request, now);
+        return orderService.createOrder(request, now);
     }
 }
