@@ -17,11 +17,15 @@ public class MailService {
         boolean result = mailSendClient.sendMail(fromEmail, toEmail, subject, content);
         if (result) {
             mailSendHistoryRepository.save(MailSendHistory.builder()
-                            .fromEmail(fromEmail)
-                            .toEmail(toEmail)
-                            .subject(subject)
-                            .content(content)
-                            .build());
+                    .fromEmail(fromEmail)
+                    .toEmail(toEmail)
+                    .subject(subject)
+                    .content(content)
+                    .build());
+            mailSendClient.a();
+            mailSendClient.b();
+            mailSendClient.c();
+
             return true;
         }
         return false;
