@@ -3,8 +3,8 @@ package sample.cafekiosk.spring.domain.order;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.context.ActiveProfiles;
+import org.springframework.transaction.annotation.Transactional;
+import sample.cafekiosk.spring.IntegrationTestSupport;
 import sample.cafekiosk.spring.domain.product.Product;
 import sample.cafekiosk.spring.domain.product.ProductRepository;
 import sample.cafekiosk.spring.domain.product.ProductSellingStatus;
@@ -18,10 +18,8 @@ import static org.assertj.core.api.Assertions.tuple;
 import static sample.cafekiosk.spring.domain.product.ProductSellingStatus.*;
 import static sample.cafekiosk.spring.domain.product.ProductType.HANDMADE;
 
-@ActiveProfiles("test")
-//@SpringBootTest
-@DataJpaTest
-class OrderRepositoryTest {
+@Transactional
+class OrderRepositoryTest extends IntegrationTestSupport {
 
     @Autowired
     private OrderRepository orderRepository;
@@ -34,7 +32,7 @@ class OrderRepositoryTest {
     void findOrdersBy() {
         // given
         OrderStatus targetStatus = OrderStatus.PAYMENT_COMPLETED;
-        LocalDateTime targetOrderDateTime = LocalDateTime.of(2024, 10, 10, 0, 0,0);
+        LocalDateTime targetOrderDateTime = LocalDateTime.of(2024, 10, 10, 0, 0, 0);
         Order order1 = createOrder(targetOrderDateTime, targetStatus);
         Order order2 = createOrder(targetOrderDateTime, targetStatus);
 
